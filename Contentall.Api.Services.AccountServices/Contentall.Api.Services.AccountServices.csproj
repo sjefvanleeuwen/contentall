@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contentall.Api.Services.EmailServices\Contentall.Api.Services.EmailServices.csproj" />
+    <ProjectReference Include="..\Contentall.Data.Provider.Abstractions\Contentall.Data.Provider.Abstractions.csproj" />
+    <ProjectReference Include="..\Contentall.Security.Abstractions\Contentall.Security.Abstractions.csproj" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+	<PackageReference Include="FontStashSharp.Rasterizers.SixLabors.Fonts" Version="1.1.5" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta18" />
+	<PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta15" />
+	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.24.0" />
+	<PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
