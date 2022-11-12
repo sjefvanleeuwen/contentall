@@ -21,6 +21,7 @@ manually reading the captcha for test automation purposes.
     "SmtpHost": "[ENTER YOUR OWN SMTP OPTIONS OR CREATE FREE TEST ACCOUNT IN ONE CLICK AT https://ethereal.email/]",
     "SmtpPort": 587,
     "SmtpUser": "",
-    "SmtpPass": ""
+    "SmtpPass": "",
+    "CaptchaMasterKey": "11111111"
   }
 ```

@@ -1,13 +1,14 @@
 ﻿using Contentall.Api.Services.AccountServices;
 using Contentall.Api.Services.AccountServices.Helpers;
 using Contentall.Data.Provider.Abstractions;
+using Contentall.Security.Abstractions.Entities;
 using Contentall.Security.Abstractions.Models.Accounts;
 
 public class Query
 {
     [UsePaging]
     [UseFiltering]
-    public IQueryable<Person> GetPersons([Service] EntitiesContainer container) => container.GetQueryableEntities<Person>();
+    public IQueryable<Account> GetPersons([Service] EntitiesContainer container) => container.GetQueryableEntities<Account>();
 }
 public class Person
 {
