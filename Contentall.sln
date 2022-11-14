@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contentall.Api.Services.Ema
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contentall.Api.Services.AccountServices", "Contentall.Api.Services.AccountServices\Contentall.Api.Services.AccountServices.csproj", "{5FE51D87-BE9A-47A6-AC85-828D71E70DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contentall.Api.Core", "Contentall.Api.Core\Contentall.Api.Core.csproj", "{E2173394-6DF5-44E5-A2E5-99ADDBC4B0B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contentall.Api.Core", "Contentall.Api.Core\Contentall.Api.Core.csproj", "{E2173394-6DF5-44E5-A2E5-99ADDBC4B0B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contentall.Api.Services.FileServices", "Contentall.Api.Services.FileServices\Contentall.Api.Services.FileServices.csproj", "{EB8B021B-3BD4-49D9-A259-5B147186DAA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{E2173394-6DF5-44E5-A2E5-99ADDBC4B0B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2173394-6DF5-44E5-A2E5-99ADDBC4B0B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2173394-6DF5-44E5-A2E5-99ADDBC4B0B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB8B021B-3BD4-49D9-A259-5B147186DAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB8B021B-3BD4-49D9-A259-5B147186DAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB8B021B-3BD4-49D9-A259-5B147186DAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB8B021B-3BD4-49D9-A259-5B147186DAA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
