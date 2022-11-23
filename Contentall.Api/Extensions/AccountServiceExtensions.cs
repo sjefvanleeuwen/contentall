@@ -1,7 +1,10 @@
 ﻿using Contentall.Api.Services.AccountServices;
+using Contentall.Api.Services.AccountServices.Authorization;
 using Contentall.Security.Abstractions.Authorization;
+using Contentall.Security.Abstractions.Entities;
 using Contentall.Security.Abstractions.Helpers;
 using Contentall.Security.Abstractions.Models.Accounts;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 
@@ -28,10 +31,24 @@ namespace Contentall.Api.Extensions
             return new VerifyEmailResponse() { ValidToken = true };
         }
 
-        [AllowAnonymous]
+        [Authorize(Role.User)]
         public async Task<CaptchaGenerateResponse> GenerateCaptcha()
         {
            return accountService.GenerateCaptcha();
+        }
+
+        public ResetPasswordResponse ResetPassword(ResetPasswordRequest model)
+        {
+            ResetPasswordResponse response = new ResetPasswordResponse();
+            accountService.ResetPassword(model);
+            return response;
+        }
+
+        public ForgotPasswordResponse ForgotPassword(ForgotPasswordRequest model)
+        {
+            ForgotPasswordResponse response = new ForgotPasswordResponse();
+            accountService.ForgotPassword(model);
+            return response;
         }
 
         [AllowAnonymous]

@@ -3,12 +3,22 @@ using Contentall.Api.Services.AccountServices.Helpers;
 using Contentall.Data.Provider.Abstractions;
 using Contentall.Security.Abstractions.Entities;
 using Contentall.Security.Abstractions.Models.Accounts;
+using HotChocolate.AspNetCore.Authorization;
+using System.Security.Claims;
 
 public class Query
 {
     [UsePaging]
     [UseFiltering]
+    [Authorize]
     public IQueryable<Account> GetPersons([Service] EntitiesContainer container) => container.GetQueryableEntities<Account>();
+
+    [Authorize]
+    public Account? GetMe(ClaimsPrincipal claimsPrincipal, [Service] EntitiesContainer container)
+    {
+        var userId = claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier);
+        return container.GetQueryableEntities<Account>().Where(p => p.Id == userId).Single();
+    }
 }
 public class Person
 {

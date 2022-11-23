@@ -183,7 +183,7 @@ public class AccountService : IAccountService
         _context.Update(account);
     }
 
-    public void ForgotPassword(ForgotPasswordRequest model, string origin)
+    public void ForgotPassword(ForgotPasswordRequest model)
     {
         var account = _context.GetQueryableEntities<Account>().SingleOrDefault(x => x.Email == model.Email);
 
@@ -197,7 +197,7 @@ public class AccountService : IAccountService
         _context.Update(account);
 
         // send email
-        sendPasswordResetEmail(account, origin);
+        sendPasswordResetEmail(account, model.Origin);
     }
 
     public void ValidateResetToken(ValidateResetTokenRequest model)
@@ -224,7 +224,7 @@ public class AccountService : IAccountService
         return _mapper.Map<IList<AccountResponse>>(accounts);
     }
 
-    public AccountResponse GetById(int id)
+    public AccountResponse GetById(string id)
     {
         var account = getAccount(id);
         return _mapper.Map<AccountResponse>(account);
@@ -250,7 +250,7 @@ public class AccountService : IAccountService
         return _mapper.Map<AccountResponse>(account);
     }
 
-    public AccountResponse Update(int id, UpdateRequest model)
+    public AccountResponse Update(string id, UpdateRequest model)
     {
         var account = getAccount(id);
 
@@ -270,7 +270,7 @@ public class AccountService : IAccountService
         return _mapper.Map<AccountResponse>(account);
     }
 
-    public void Delete(int id)
+    public void Delete(string id)
     {
         var account = getAccount(id);
         _context.Delete<Account>(id.ToString());
@@ -278,7 +278,7 @@ public class AccountService : IAccountService
 
     // helper methods
 
-    private Account getAccount(int id)
+    private Account getAccount(string id)
     {
         var account = _context.GetQueryableEntities<Account>().Where(p=>p.Id == id.ToString()).SingleOrDefault();
         if (account == null) throw new KeyNotFoundException("Account not found");

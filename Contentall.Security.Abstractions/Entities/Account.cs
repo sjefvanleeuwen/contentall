@@ -1,4 +1,5 @@
 using LiteDB;
+using System.Data;
 
 namespace Contentall.Security.Abstractions.Entities;
 

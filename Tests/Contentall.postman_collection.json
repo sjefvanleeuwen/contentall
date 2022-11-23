@@ -6,139 +6,329 @@
 	},
 	"item": [
 		{
-			"name": "Register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\r\n  register(model: {\r\n    acceptTerms: false\r\n    captcha: \"11111111\"\r\n    captchaTransactionKey: \"11111111\"\r\n    confirmPassword: \"Welcome123!\"\r\n    password: \"Welcome123!\"\r\n    email: \"user2@ccmixter.org\"\r\n    firstName: \"John\"\r\n    lastName: \"Doe\"\r\n    title: \"mr.\"\r\n  }) {\r\n\r\n    apiResult {\r\n      uiDisplayMessage\r\n      processingTime\r\n    }\r\n  }\r\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7079/graphql/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7079",
-					"path": [
-						"graphql",
-						""
+			"name": "Auth",
+			"item": [
+				{
+					"name": "AccountService",
+					"item": [
+						{
+							"name": "Persons",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  persons {\r\n    nodes {\r\n      id\r\n      firstName\r\n      lastName\r\n    }\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7079/graphql/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7079",
+									"path": [
+										"graphql",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Me",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\r\n  me {\r\n    firstName\r\n    lastName\r\n  }\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "https://localhost:7079/graphql/",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "7079",
+									"path": [
+										"graphql",
+										""
+									]
+								}
+							},
+							"response": []
+						}
 					]
 				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
 			},
-			"response": []
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
-			"name": "Captcha",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\r\n  generateCaptcha {\r\n    image\r\n    transactionKey\r\n    apiResult {\r\n      uiDisplayMessage\r\n      processingTime\r\n    }\r\n  }\r\n}",
-						"variables": ""
-					}
+			"name": "AccountService",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  register(model: {\r\n    acceptTerms: false\r\n    captcha: \"11111111\"\r\n    captchaTransactionKey: \"11111111\"\r\n    confirmPassword: \"Welcome123!\"\r\n    password: \"Welcome123!\"\r\n    email: \"admin@ccmixter.org\"\r\n    firstName: \"John\"\r\n    lastName: \"Doe\"\r\n    title: \"mr.\"\r\n  }) {\r\n\r\n    apiResult {\r\n      uiDisplayMessage\r\n      processingTime\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://localhost:7079/graphql/",
-					"protocol": "https",
-					"host": [
-						"localhost"
+				{
+					"name": "Captcha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  generateCaptcha {\r\n    image\r\n    transactionKey\r\n    apiResult {\r\n      uiDisplayMessage\r\n      processingTime\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  verifyEmail(token: \"B60CB3E32EF49B345E5EBB9A04C8E7D380D5598CD2DA3F7C4FFAF62BBA1CC12D78A2717192C7F77D78E5FF5683FF22A35EE45788A28F9C753628B04A7594C1CE\") {\r\n    validToken\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"jwt_token\", json.data.authenticate.jwtToken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "7079",
-					"path": [
-						"graphql",
-						""
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  authenticate(model: {\r\n    email: \"admin@ccmixter.org\"\r\n    password: \"Welcome123!\"\r\n  }) {\r\n    firstName\r\n    lastName\r\n    role\r\n    jwtToken\r\n    refreshToken\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ForgotPassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    forgotPassword(model: {\r\n        email: \"admin@ccmixter.org\"\r\n        origin: \"forgotPassword\"\r\n    }) {\r\n        apiResult {\r\n            processingTime\r\n        }\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ResetPassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    resetPassword(model:{\r\n        token: \"5AE6E2EEDEFF9E84F6B10EE68718B79C72A8C7A42B0546312D54334362DBF458A979677712E3E4FB56E7E03E781D24BC23B74C7FF357F2B4A459F3FAD4B7949E\"\r\n        password: \"Welcome123!\"\r\n        confirmPassword: \"Welcome123!\"\r\n    }) {\r\n        apiResult {\r\n            processingTime\r\n        }\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7079/graphql/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7079",
+							"path": [
+								"graphql",
+								""
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
 		},
 		{
-			"name": "Verify Email",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\r\n  verifyEmail(token: \"D1E308D0751438E184EC0C418753EBE2A69F47E456AA3F628F34039D3064EE2D338AC7257EFBA2C13EDE8AACC1711F015F52A6CA5A7383A35F964B87959721BC\") {\r\n    validToken\r\n  }\r\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7079/graphql/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7079",
-					"path": [
-						"graphql",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Authenticate",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "mutation {\r\n  authenticate(model: {\r\n    email: \"user2@ccmixter.org\"\r\n    password: \"Welcome123!\"\r\n  }) {\r\n    firstName\r\n    lastName\r\n    role\r\n    jwtToken\r\n    refreshToken\r\n  }\r\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7079/graphql/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7079",
-					"path": [
-						"graphql",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Persons",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "{\r\n  persons {\r\n    nodes {\r\n      id\r\n      firstName\r\n      lastName\r\n    }\r\n  }\r\n}",
-						"variables": ""
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7079/graphql/",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7079",
-					"path": [
-						"graphql",
-						""
-					]
-				}
-			},
-			"response": []
+			"key": "jwt_token",
+			"value": ""
 		}
 	]
 }
